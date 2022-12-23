@@ -1,0 +1,62 @@
+.main
+{
+
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sub
+{
+    height: 60%;
+    width: 60%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    
+}
+.text
+{   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text h1
+{  
+    color: #45b6fe;
+    margin-top: 50px;
+}
+.tags
+{
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fro select,.too select
+{ box-sizing: border-box;
+  height: 30px;
+  width: 100px;
+  outline: none;
+  border-radius: 5px;
+}
+.fro input,.too input
+{   box-sizing: border-box;
+    height: 30px;
+    outline: none;
+    width:400px;
+    margin-left: 10px;
+    border-radius:5px;
+    font-size: 15px;
+    padding: 5px;
+    border: 1.5px solid rgb(100, 99, 99);
+}
+.too
+{ margin-top: 10px;
+}
+.fro input::-webkit-inner-spin-button,.too input::-webkit-inner-spin-button
+{
+    display: none;
+}
