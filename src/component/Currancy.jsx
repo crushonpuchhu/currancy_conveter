@@ -1,6 +1,6 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useRef } from 'react'
 import st from './Style.module.css'
-
+import axios from 'axios'
 const from_data = ["USD",
     "AED",
     "AFN",
@@ -343,9 +343,44 @@ const to_data = ["INR",
     "ZMW",
     "ZWL"]
 
-
+    const da=new Date();
+    const date=da.getDate()-10;
+    const year=da.getFullYear();
+    const mounth=da.getMonth()+1;
+  
 const Currancy = () => {
+   
+    const data1=useRef();
+    const data2=useRef();
+    const in1=useRef();
+    const in2=useRef();
 
+
+
+    function run1(e)
+  {
+    console.log("hello",e.target.value);
+    console.log(data1.current.value);
+    const arr=new Array();
+    arr.push(e.target.value);
+    arr.push(data1.current.value);
+    arr.push(in1.current.value);
+
+       try
+       {
+        const info= axios("https://exchange-rates.abstractapi.com/v1/convert?api_key=4b15c61a17324062a04490a72146f438&base="+arr[0]+"&target="+arr[1]+"&date="+year+"-"+mounth+"-"+date+"&base_amount="+arr[2]);
+        const fet= async ()=>{
+            const data_get=await info;
+            in2.current.value=data_get.data.converted_amount;
+        }
+        fet();
+       }
+       catch(e)
+       {
+         console.log(e);
+       }
+
+  }
 
 
     return (
@@ -358,7 +393,7 @@ const Currancy = () => {
                     </div>
                     <div className={st.tags}>
                         <div className={st.fro}>
-                            <select onClick={()=>{}} name="from" id="">
+                            <select onChange={run1} name="from" id="">
                                 {
                                     from_data.map((e, i) => {
 
@@ -370,10 +405,10 @@ const Currancy = () => {
                                 }
 
                             </select>
-                            <input type="number" value={1} />
+                            <input type="number" ref={in1}  />
                         </div>
                         <div className={st.too}>
-                            <select name="to" id="">
+                            <select ref={data1} onChange={(e)=>{console.log(e.target.value)}}  name="to" id="">
                                 {
                                     to_data.map((e, i) => {
                                         return (
@@ -382,7 +417,7 @@ const Currancy = () => {
                                     })
                                 }
                             </select>
-                            <input type="number" value={1} />
+                            <input type="number"  ref={in2}  />
 
                         </div>
                     </div>
