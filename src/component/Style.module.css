@@ -1,62 +1,147 @@
-.main
-{
+.main {
 
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.sub
-{
+
+.sub {
     height: 60%;
     width: 60%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
-    
+
 }
-.text
-{   
+
+.text {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgb(58, 56, 56);
 }
-.text h1
-{  
+
+.text h1 {
     color: #45b6fe;
     margin-top: 50px;
 }
-.tags
-{
-    background-color: aqua;
+
+.tags {
+    background-color: rgb(28, 237, 237);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.fro select,.too select
-{ box-sizing: border-box;
-  height: 30px;
-  width: 100px;
-  outline: none;
-  border-radius: 5px;
+.fro select,
+.too select {
+    box-sizing: border-box;
+    height: 30px;
+    width: 100px;
+    outline: none;
+    border-radius: 5px;
 }
-.fro input,.too input
-{   box-sizing: border-box;
+
+.fro input,
+.too input {
+    box-sizing: border-box;
     height: 30px;
     outline: none;
-    width:400px;
+    width: 400px;
     margin-left: 10px;
-    border-radius:5px;
+    border-radius: 5px;
     font-size: 15px;
     padding: 5px;
     border: 1.5px solid rgb(100, 99, 99);
 }
-.too
-{ margin-top: 10px;
+
+.too {
+    margin-top: 10px;
 }
-.fro input::-webkit-inner-spin-button,.too input::-webkit-inner-spin-button
-{
+
+.fro input::-webkit-inner-spin-button,
+.too input::-webkit-inner-spin-button {
     display: none;
+}
+
+@media(max-width:1000px) {
+
+    .fro {
+        display: flex;
+        flex-direction: column;
+
+
+    }
+
+    .too {
+        display: flex;
+        flex-direction: column;
+
+
+    }
+
+    .fro [type="number"],
+    .too [type="number"] {
+        margin: 0px;
+        width: 43vw;
+        height: 27px;
+        margin-top: 5px;
+    }
+
+    .fro select,
+    .too select {
+        height: 27px;
+        width: 11vw;
+    }
+
+    .text h1 {
+        font-size: 170%;
+
+
+    }
+
+}
+
+@media(max-width:500px) {
+    .sub {
+        height: 50%;
+        width: 85%;
+    }
+
+    .fro {
+        display: flex;
+        flex-direction: column;
+
+
+    }
+
+    .too {
+        display: flex;
+        flex-direction: column;
+
+
+    }
+
+    .fro [type="number"],
+    .too [type="number"] {
+        margin: 0px;
+        width: 55vw;
+        height: 28px;
+        margin-top: 5px;
+    }
+
+    .fro select,
+    .too select {
+        height: 30px;
+        width: 16vw;
+    }
+
+    .text h1 {
+        font-size: 170%;
+
+
+    }
+
 }

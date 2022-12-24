@@ -1,4 +1,4 @@
-import React, { useReducer, useRef } from 'react'
+import React, { useReducer, useRef, useState } from 'react'
 import st from './Style.module.css'
 import axios from 'axios'
 const from_data = ["USD",
@@ -343,45 +343,94 @@ const to_data = ["INR",
     "ZMW",
     "ZWL"]
 
-    const da=new Date();
-    const date=da.getDate()-10;
-    const year=da.getFullYear();
-    const mounth=da.getMonth()+1;
-  
+const da = new Date();
+const date = da.getDate() - 3;
+const year = da.getFullYear();
+const mounth = da.getMonth() + 1;
+
+
 const Currancy = () => {
-   
-    const data1=useRef();
-    const data2=useRef();
-    const in1=useRef();
-    const in2=useRef();
+      
+    const data1 = useRef();
+    const data2 = useRef();
+    const inp1 = useRef();
+    const inp2 = useRef();
 
 
 
-    function run1(e)
-  {
-    console.log("hello",e.target.value);
-    console.log(data1.current.value);
-    const arr=new Array();
-    arr.push(e.target.value);
-    arr.push(data1.current.value);
-    arr.push(in1.current.value);
+    function run1(e) {
 
-       try
-       {
-        const info= axios("https://exchange-rates.abstractapi.com/v1/convert?api_key=4b15c61a17324062a04490a72146f438&base="+arr[0]+"&target="+arr[1]+"&date="+year+"-"+mounth+"-"+date+"&base_amount="+arr[2]);
-        const fet= async ()=>{
-            const data_get=await info;
-            in2.current.value=data_get.data.converted_amount;
+        const arr = new Array();
+        arr.push(e.target.value);
+        arr.push(data1.current.value);
+        arr.push(data2.current.value);
+
+        try {
+            const info = axios("https://exchange-rates.abstractapi.com/v1/convert?api_key=4b15c61a17324062a04490a72146f438&base=" + arr[1] + "&target=" + arr[2] + "&date=" + year + "-" + mounth + "-" + date + "&base_amount=" + arr[0]);
+            const fet = async () => {
+                const data_get = await info;
+                if (arr[0] !== "") {
+                    inp2.current.value = data_get.data.converted_amount;
+
+                }
+                else
+                    inp2.current.value = "";
+                setTimeout(() => {
+                    if (arr[0] !== "") {
+                        inp2.current.value= data_get.data.converted_amount;
+
+                    }
+                    else
+                        inp2.current.value = "";
+                }, 1000)
+
+            }
+            fet();
+
         }
-        fet();
-        
-       }
-       catch(e)
-       {
-         console.log(e);
-       }
+        catch (e) {
+            console.log(e);
+        }
 
-  }
+    }
+
+    function run2(e) {
+
+        const arr = new Array();
+        arr.push(e.target.value);
+        arr.push(data1.current.value);
+        arr.push(data2.current.value);
+
+        try {
+            const info = axios("https://exchange-rates.abstractapi.com/v1/convert?api_key=4b15c61a17324062a04490a72146f438&base=" + arr[2] + "&target=" + arr[1] + "&date=" + year + "-" + mounth + "-" + date + "&base_amount=" + arr[0]);
+            const fet = async () => {
+                const data_get = await info;
+                if (arr[0] !== "") {
+                    inp1.current.value = data_get.data.converted_amount;
+
+                }
+                else
+                    inp1.current.value = "";
+
+
+                setTimeout(() => {
+                    if (arr[0] !== "") {
+                        inp1.current.value = data_get.data.converted_amount;
+
+                    }
+                    else
+                        inp1.current.value = "";
+                }, 1000)
+
+            }
+            fet();
+
+        }
+        catch (e) {
+            console.log(e);
+        }
+
+    }
 
 
     return (
@@ -394,22 +443,22 @@ const Currancy = () => {
                     </div>
                     <div className={st.tags}>
                         <div className={st.fro}>
-                            <select onChange={run1} name="from" id="">
+                            <select ref={data1} name="from" id="">
                                 {
                                     from_data.map((e, i) => {
 
                                         return (
                                             <option key={i} value={e}>{e}</option>
-                                            
+
                                         )
                                     })
                                 }
 
                             </select>
-                            <input type="number" ref={in1}  />
+                            <input type="number" onChange={run1} ref={inp1} />
                         </div>
                         <div className={st.too}>
-                            <select ref={data1} onChange={(e)=>{console.log(e.target.value)}}  name="to" id="">
+                            <select ref={data2} name="to" id="">
                                 {
                                     to_data.map((e, i) => {
                                         return (
@@ -418,7 +467,7 @@ const Currancy = () => {
                                     })
                                 }
                             </select>
-                            <input type="number"  ref={in2}  />
+                            <input type="number" onChange={run2} ref={inp2} />
 
                         </div>
                     </div>
