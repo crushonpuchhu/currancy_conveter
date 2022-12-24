@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/currancy_conveter/static/css/main.77797a63.css",
+    "main.js": "/currancy_conveter/static/js/main.a897f3fc.js",
+    "static/js/787.94ca03f0.chunk.js": "/currancy_conveter/static/js/787.94ca03f0.chunk.js",
+    "index.html": "/currancy_conveter/index.html",
+    "main.77797a63.css.map": "/currancy_conveter/static/css/main.77797a63.css.map",
+    "main.a897f3fc.js.map": "/currancy_conveter/static/js/main.a897f3fc.js.map",
+    "787.94ca03f0.chunk.js.map": "/currancy_conveter/static/js/787.94ca03f0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.77797a63.css",
+    "static/js/main.a897f3fc.js"
+  ]
+}
