@@ -374,6 +374,7 @@ const Currancy = () => {
             in2.current.value=data_get.data.converted_amount;
         }
         fet();
+        
        }
        catch(e)
        {
